@@ -1,17 +1,501 @@
-<h1>Julia Moskal</h1>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julia Moskal | Finance Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#0A192F',
+                            900: '#020C1B',
+                            950: '#010712',
+                        },
+                        gold: {
+                            400: '#F3C650',
+                            500: '#D4AF37',
+                            600: '#AA8C2C',
+                        },
+                        rutgers: '#CC0033'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-header {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #D4AF37 0%, #F3C650 50%, #AA8C2C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-navy-950 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-gold-500 selection:text-navy-950">
 
-<img src="headshot.png" alt="Julia Moskal" width="200">
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 glass-header bg-white/90 dark:bg-navy-900/90 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo / Name -->
+                <a href="#" class="flex items-center space-x-3 text-xl font-bold tracking-tight text-navy-900 dark:text-white hover:opacity-80 transition">
+                    <span class="w-3 h-3 rounded-full bg-gold-500 inline-block shadow-sm"></span>
+                    <span class="tracking-wide">Julia Moskal</span>
+                </a>
 
-<h2>About Me</h2>
-<p>My name is Julia and I am a Rutgers Business School student pursuing a career in finance, with a strong interest in using analytical thinking and problem-solving to understand how businesses and financial decisions shape people’s lives.</p>
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                    <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-navy-900 dark:hover:text-gold-400 transition">About</a>
+                    <a href="#projects" class="text-slate-600 dark:text-slate-300 hover:text-navy-900 dark:hover:text-gold-400 transition">Projects</a>
+                    <a href="#skills" class="text-slate-600 dark:text-slate-300 hover:text-navy-900 dark:hover:text-gold-400 transition">Skills</a>
+                    <a href="#resume" class="text-slate-600 dark:text-slate-300 hover:text-navy-900 dark:hover:text-gold-400 transition">Resume</a>
+                    <a href="#contact" class="text-slate-600 dark:text-slate-300 hover:text-navy-900 dark:hover:text-gold-400 transition">Contact</a>
+                </nav>
 
-<h2>Projects</h2>
-<a href="Projects">View my projects</a>
+                <!-- Actions -->
+                <div class="flex items-center space-x-3">
+                    <a href="#resume" class="hidden sm:inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-semibold bg-navy-900 text-white dark:bg-gold-500 dark:text-navy-950 hover:bg-navy-800 dark:hover:bg-gold-400 transition shadow-sm">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Resume</span>
+                    </a>
 
-<h2>Skills</h2>
-<a href="Skills">View my skills</a>
+                    <!-- Theme Toggle -->
+                    <button id="themeToggleBtn" aria-label="Toggle Theme" class="p-2.5 rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <i id="themeToggleIcon" class="fa-solid fa-moon text-lg"></i>
+                    </button>
 
-<h2>Resume</h2>
-<a href="Julia%20Moskal-%20Resume.pdf" target="_blank">
-  View my resume
-</a>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" aria-label="Open Navigation Menu" class="md:hidden p-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileDrawer" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-navy-900 px-4 pt-2 pb-6 space-y-3">
+            <a href="#about" class="mobile-link block px-3 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">About</a>
+            <a href="#projects" class="mobile-link block px-3 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Projects</a>
+            <a href="#skills" class="mobile-link block px-3 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Skills</a>
+            <a href="#resume" class="mobile-link block px-3 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Resume</a>
+            <a href="#contact" class="mobile-link block px-3 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Contact</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="relative py-16 lg:py-24 overflow-hidden">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Headshot Avatar Column -->
+                    <div class="lg:col-span-4 flex flex-col items-center justify-center">
+                        <div class="relative group">
+                            <!-- Subtle Glow Ring -->
+                            <div class="absolute -inset-1.5 rounded-full bg-gradient-to-r from-gold-500 to-navy-900 dark:from-gold-400 dark:to-navy-800 opacity-80 blur-md group-hover:opacity-100 transition duration-500"></div>
+                            
+                            <div class="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-white dark:border-navy-900 shadow-2xl bg-slate-200 dark:bg-navy-800 flex items-center justify-center">
+                                <img 
+                                    src="headshot.png" 
+                                    alt="Julia Moskal" 
+                                    class="w-full h-full object-cover object-center"
+                                    onerror="this.onerror=null; this.src='https://placehold.co/400x400/0A192F/FFFFFF?text=JM';"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="mt-4 flex items-center space-x-2 text-xs font-semibold px-3 py-1.5 rounded-full bg-slate-200/80 dark:bg-navy-900 dark:text-slate-300 text-slate-700 border border-slate-300 dark:border-slate-800">
+                            <span class="w-2 h-2 rounded-full bg-rutgers"></span>
+                            <span>Rutgers Business School</span>
+                        </div>
+                    </div>
+
+                    <!-- Intro Info Column -->
+                    <div class="lg:col-span-8 space-y-6 text-center lg:text-left">
+                        <div class="space-y-2">
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-navy-900 dark:text-white">
+                                Julia Moskal
+                            </h1>
+                            <p class="text-lg sm:text-xl font-semibold text-slate-600 dark:text-gold-400 tracking-wide">
+                                Rutgers Business School | Finance & Business Analytics
+                            </p>
+                        </div>
+
+                        <!-- Main Personal Statement -->
+                        <blockquote class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl border-l-0 lg:border-l-4 lg:border-gold-500 lg:pl-4 italic">
+                            "My name is Julia and I am a Rutgers Business School student pursuing a career in finance, with a strong interest in using analytical thinking and problem-solving to understand how businesses and financial decisions shape people’s lives."
+                        </blockquote>
+
+                        <!-- Quick Action Buttons -->
+                        <div class="pt-2 flex flex-wrap gap-4 justify-center lg:justify-start items-center">
+                            <a href="#projects" class="px-6 py-3 rounded-xl font-semibold text-white bg-navy-900 hover:bg-navy-800 dark:bg-gold-500 dark:text-navy-950 dark:hover:bg-gold-400 shadow-md hover:shadow-lg transition flex items-center gap-2">
+                                <span>View Projects</span>
+                                <i class="fa-solid fa-arrow-down text-xs"></i>
+                            </a>
+
+                            <a href="#skills" class="px-6 py-3 rounded-xl font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-navy-900 border border-slate-300 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                                View Skills
+                            </a>
+
+                            <a href="Julia_Moskal_Resume.pdf" target="_blank" class="px-6 py-3 rounded-xl font-semibold text-navy-900 dark:text-gold-400 bg-slate-100 dark:bg-navy-900/60 border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-navy-800 transition flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                <span>View Resume</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-16 bg-white dark:bg-navy-900 border-y border-slate-200/80 dark:border-slate-800/80">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center space-y-4 mb-12">
+                    <h2 class="text-3xl font-bold tracking-tight text-navy-900 dark:text-white">About Me</h2>
+                    <div class="w-12 h-1 bg-gold-500 mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-6 rounded-2xl bg-slate-50 dark:bg-navy-950/60 border border-slate-200 dark:border-slate-800 space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-navy-900/10 dark:bg-gold-500/10 text-navy-900 dark:text-gold-400 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-university"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-navy-900 dark:text-white">Rutgers Business School</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Developing a comprehensive foundation in corporate finance, financial modeling, and business management concepts at a premier business institution.
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-slate-50 dark:bg-navy-950/60 border border-slate-200 dark:border-slate-800 space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-navy-900/10 dark:bg-gold-500/10 text-navy-900 dark:text-gold-400 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-navy-900 dark:text-white">Analytical Thinking</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Focused on transforming financial information into actionable insights, identifying critical operational trends, and supporting strategic decision-making.
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-slate-50 dark:bg-navy-950/60 border border-slate-200 dark:border-slate-800 space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-navy-900/10 dark:bg-gold-500/10 text-navy-900 dark:text-gold-400 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-handshake"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-navy-900 dark:text-white">Real-World Impact</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Driven to understand how financial principles and corporate strategies directly impact organizations, consumers, and society as a whole.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 bg-slate-50 dark:bg-navy-950">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                    <h2 class="text-3xl font-bold tracking-tight text-navy-900 dark:text-white">Academic Projects</h2>
+                    <p class="text-slate-600 dark:text-slate-400">Practical management and business analysis completed at Rutgers Business School.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    
+                    <!-- Project 1 -->
+                    <div class="bg-white dark:bg-navy-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:shadow-md transition">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-rutgers/10 text-rutgers dark:bg-rutgers/20 dark:text-red-300">
+                                    Management Skills Course
+                                </span>
+                                <i class="fa-solid fa-briefcase text-slate-400 text-lg"></i>
+                            </div>
+
+                            <h3 class="text-2xl font-bold text-navy-900 dark:text-white">Business Management Analysis</h3>
+
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Conducted an interview with a business to understand its operations, identify areas that could be improved, and analyze organizational challenges. Applied management concepts to evaluate the business's current practices and developed recommendations for addressing identified areas for improvement.
+                            </p>
+                        </div>
+
+                        <div class="pt-6 border-t border-slate-100 dark:border-slate-800 mt-6 flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-navy-800 text-slate-700 dark:text-slate-300">Operational Analysis</span>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-navy-800 text-slate-700 dark:text-slate-300">Business Management</span>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-navy-800 text-slate-700 dark:text-slate-300">Strategic Recommendations</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="bg-white dark:bg-navy-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:shadow-md transition">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-gold-500/10 text-gold-600 dark:bg-gold-500/20 dark:text-gold-400">
+                                    Introduction to Management
+                                </span>
+                                <i class="fa-solid fa-rocket text-slate-400 text-lg"></i>
+                            </div>
+
+                            <h3 class="text-2xl font-bold text-navy-900 dark:text-white">Campus Business Development</h3>
+
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Worked collaboratively with a team to design and develop a business concept for an on-campus venture. Evaluated the business's potential direction and made strategic decisions regarding future expansion, development, and growth.
+                            </p>
+                        </div>
+
+                        <div class="pt-6 border-t border-slate-100 dark:border-slate-800 mt-6 flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-navy-800 text-slate-700 dark:text-slate-300">Venture Concept</span>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-navy-800 text-slate-700 dark:text-slate-300">Team Leadership</span>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-navy-800 text-slate-700 dark:text-slate-300">Market Evaluation</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 bg-white dark:bg-navy-900 border-t border-slate-200/80 dark:border-slate-800/80">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                    <h2 class="text-3xl font-bold tracking-tight text-navy-900 dark:text-white">Core Skills & Competencies</h2>
+                    <p class="text-slate-600 dark:text-slate-400">Key quantitative, analytical, and interpersonal strengths.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Skill 1 -->
+                    <div class="p-5 rounded-2xl bg-slate-50 dark:bg-navy-950/60 border border-slate-200 dark:border-slate-800 space-y-2">
+                        <div class="flex items-center space-x-2 text-navy-900 dark:text-gold-400 font-bold">
+                            <i class="fa-solid fa-chart-pie text-sm"></i>
+                            <h3 class="text-base">Financial Data Analysis</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Analyzing financial information to identify trends and support business decisions.
+                        </p>
+                    </div>
+
+                    <!-- Skill 2 -->
+                    <div class="p-5 rounded-2xl bg-slate-50 dark:bg-navy-950/60 border border-slate-200 dark:border-slate-800 space-y-2">
+                        <div class="flex items-center space-x-2 text-navy-900 dark:text-gold-400 font-bold">
+                            <i class="fa-solid fa-file-excel text-sm"></i>
+                            <h3 class="text-base">Microsoft Excel</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Organizing data, performing calculations, and creating structured spreadsheets.
+                        </p>
+                    </div>
+
+                    <!-- Skill 3 -->
+                    <div class="p-5 rounded-2xl bg-slate-50 dark:bg-navy-950/60 border border-slate-200 dark:border-slate-800 space-y-2">
+                        <div class="flex items-center space-x-2 text-navy-900 dark:text-gold-400 font-bold">
+                            <i class="fa-solid fa-calculator text-sm"></i>
+                            <h3 class="text-base">Quantitative Problem-Solving</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Applying analytical and numerical reasoning to business problems.
+                        </p>
+                    </div>
+
+                    <!-- Skill 4 -->
+                    <div class="p-5 rounded-2xl bg-slate-50 dark:bg-navy-950/60 border border-slate-200 dark:border-slate-800 space-y-2">
+                        <div class="flex items-center space-x-2 text-navy-900 dark:text-gold-400 font-bold">
+                            <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                            <h3 class="text-base">Business Research</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Gathering, evaluating, and organizing information to support conclusions.
+                        </p>
+                    </div>
+
+                    <!-- Skill 5 -->
+                    <div class="p-5 rounded-2xl bg-slate-50 dark:bg-navy-950/60 border border-slate-200 dark:border-slate-800 space-y-2">
+                        <div class="flex items-center space-x-2 text-navy-900 dark:text-gold-400 font-bold">
+                            <i class="fa-solid fa-diagram-project text-sm"></i>
+                            <h3 class="text-base">Data Interpretation</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Identifying patterns and drawing meaningful insights from data.
+                        </p>
+                    </div>
+
+                    <!-- Skill 6 -->
+                    <div class="p-5 rounded-2xl bg-slate-50 dark:bg-navy-950/60 border border-slate-200 dark:border-slate-800 space-y-2">
+                        <div class="flex items-center space-x-2 text-navy-900 dark:text-gold-400 font-bold">
+                            <i class="fa-solid fa-comments text-sm"></i>
+                            <h3 class="text-base">Communication</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Presenting ideas clearly in academic and professional settings (written & verbal).
+                        </p>
+                    </div>
+
+                    <!-- Skill 7 -->
+                    <div class="p-5 rounded-2xl bg-slate-50 dark:bg-navy-950/60 border border-slate-200 dark:border-slate-800 space-y-2">
+                        <div class="flex items-center space-x-2 text-navy-900 dark:text-gold-400 font-bold">
+                            <i class="fa-solid fa-display text-sm"></i>
+                            <h3 class="text-base">Presentation Development</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Organizing research and information into clear, professional presentations.
+                        </p>
+                    </div>
+
+                    <!-- Skill 8 -->
+                    <div class="p-5 rounded-2xl bg-slate-50 dark:bg-navy-950/60 border border-slate-200 dark:border-slate-800 space-y-2">
+                        <div class="flex items-center space-x-2 text-navy-900 dark:text-gold-400 font-bold">
+                            <i class="fa-solid fa-list-check text-sm"></i>
+                            <h3 class="text-base">Project Organization</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Managing assignments, deadlines, and multiple priorities effectively.
+                        </p>
+                    </div>
+
+                    <!-- Skill 9 -->
+                    <div class="p-5 rounded-2xl bg-slate-50 dark:bg-navy-950/60 border border-slate-200 dark:border-slate-800 space-y-2">
+                        <div class="flex items-center space-x-2 text-navy-900 dark:text-gold-400 font-bold">
+                            <i class="fa-solid fa-people-group text-sm"></i>
+                            <h3 class="text-base">Collaborative Problem-Solving</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Working with others to complete projects and achieve shared goals.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section id="resume" class="py-20 bg-slate-50 dark:bg-navy-950">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <div class="max-w-3xl mx-auto text-center space-y-4">
+                    <h2 class="text-3xl font-bold tracking-tight text-navy-900 dark:text-white">Resume</h2>
+                    <p class="text-slate-600 dark:text-slate-400">View or download my resume directly below.</p>
+                    
+                    <div class="pt-2">
+                        <a href="Julia_Moskal_Resume.pdf" target="_blank" class="inline-flex items-center space-x-2 px-6 py-3 rounded-xl font-semibold text-white bg-navy-900 hover:bg-navy-800 dark:bg-gold-500 dark:text-navy-950 dark:hover:bg-gold-400 shadow-md transition">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            <span>Open Resume in New Tab</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Embedded PDF Viewer Container -->
+                <div class="bg-white dark:bg-navy-900 rounded-3xl p-4 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-lg max-w-4xl mx-auto">
+                    <div class="w-full h-[600px] sm:h-[750px] rounded-2xl overflow-hidden bg-slate-100 dark:bg-navy-950 border border-slate-200 dark:border-slate-800">
+                        <iframe 
+                            src="Julia_Moskal_Resume.pdf" 
+                            title="Julia Moskal Resume"
+                            class="w-full h-full border-none"
+                        >
+                            <div class="p-8 text-center space-y-4">
+                                <p class="text-slate-600 dark:text-slate-300">Your browser does not support embedding PDFs directly.</p>
+                                <a href="Julia_Moskal_Resume.pdf" target="_blank" class="inline-block px-4 py-2 rounded-lg bg-gold-500 text-navy-950 font-semibold">Click here to view PDF</a>
+                            </div>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-white dark:bg-navy-900 border-t border-slate-200/80 dark:border-slate-800/80">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center space-y-4 mb-12">
+                    <h2 class="text-3xl font-bold tracking-tight text-navy-900 dark:text-white">Get In Touch</h2>
+                    <p class="text-slate-600 dark:text-slate-400">Feel free to reach out regarding finance internships, academic projects, or professional opportunities.</p>
+                </div>
+
+                <div class="bg-slate-50 dark:bg-navy-950 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm max-w-2xl mx-auto space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center">
+                        <a href="mailto:julia.moskal@example.com" class="p-6 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 hover:border-gold-500 transition space-y-2">
+                            <i class="fa-solid fa-envelope text-2xl text-gold-500"></i>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Email Me</p>
+                            <p class="text-sm font-semibold text-navy-900 dark:text-white truncate">Contact Julia</p>
+                        </a>
+
+                        <a href="https://linkedin.com" target="_blank" class="p-6 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 hover:border-gold-500 transition space-y-2">
+                            <i class="fa-brands fa-linkedin text-2xl text-gold-500"></i>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Connect</p>
+                            <p class="text-sm font-semibold text-navy-900 dark:text-white">LinkedIn Profile</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-100 dark:bg-navy-950 border-t border-slate-200 dark:border-slate-800 text-center text-xs text-slate-500 dark:text-slate-400 space-y-2">
+        <p>&copy; <span id="year"></span> Julia Moskal. All rights reserved.</p>
+        <p class="text-[11px] text-slate-400 dark:text-slate-500">Rutgers Business School Student Portfolio</p>
+    </footer>
+
+    <!-- Client JavaScript -->
+    <script>
+        // Dynamic current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Theme Switcher Logic
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeToggleIcon = document.getElementById('themeToggleIcon');
+
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeToggleIcon.classList.replace('fa-moon', 'fa-sun');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleIcon.classList.replace('fa-sun', 'fa-moon');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeToggleIcon.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggleIcon.classList.replace('fa-moon', 'fa-sun');
+            }
+        });
+
+        // Mobile Menu Drawer
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileDrawer.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileDrawer.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
